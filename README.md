@@ -1,29 +1,100 @@
 # Message_wall
 
-This template should help get you started developing with Vue 3 in Vite.
+## 项目描述
 
-## Recommended IDE Setup
+- 这是一个前端基于vue3，后端使用nodejs和mysql的练手项目原创开发者为[yike陈](https://space.bilibili.com/485469670)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### 项目目录结构
 
-## Customize configuration
+> * |-- Message_wall
+>      *  |-- .gitignore
+>      *  |-- directoryList.md
+>      *  |-- index.html
+>      *  |-- package.json
+>      *  |-- README.md
+>      *  |-- vite.config.js
+>      *  |-- yarn.lock
+>      *  |-- .idea
+>      *  |   |-- .gitignore
+>      *  |   |-- Message_wall.iml
+>      *  |   |-- modules.xml
+>      *  |   |-- vcs.xml
+>      *  |   |-- workspace.xml
+>      *  |-- .vscode
+>      *  |   |-- extensions.json
+>      *  |-- mock
+>      *  |-- public
+>      *  |   |-- favicon.ico
+>      *  |-- src
+>          *  |-- App.vue
+>          *  |-- main.js
+>          *  |-- api
+>          *  |-- assets
+>          *  |   |-- main.css
+>          *  |   |-- fonts
+>          *  |   |-- images
+>          *  |-- components
+>          *  |-- router
+>          *  |-- store
+>          *  |-- styles
+>          *  |-- utils
+>          *  |-- view
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### 安装插件
 
-## Project Setup
+- 安装路由插件
 
-```sh
-yarn
+  ```bash
+  yarn add vue-router@4
+  ```
+
+- 安装pinia
+
+  ```bash
+  yarn add pinia
+  ```
+
+- 安装less
+
+  ```bash
+  yarn add less
+  ```
+
+- 安装axios
+
+  ```bash
+  yarn add axios
+  ```
+
+- 如果在vue3中直接使用安装vue拓展axios插件
+
+  ```bash
+  yarn add vue-axios
+  ```
+
+### 在main.js中引入插件
+
+```vue
+import {createApp} from 'vue'
+import App from './App.vue'
+import router from "@/router";
+import {createPinia} from "pinia";
+import VueAxios from "vue-axios";
+import axios from "axios";
+
+const app = createApp(App);
+const pinia = createPinia();
+
+app.use(pinia)
+app.use(router);
+app.use(VueAxios, axios)
+
+app.mount('#app');
 ```
 
-### Compile and Hot-Reload for Development
 
-```sh
-yarn dev
-```
 
-### Compile and Minify for Production
 
-```sh
-yarn build
-```
+
+
+
