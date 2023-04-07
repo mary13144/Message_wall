@@ -92,9 +92,30 @@ app.use(VueAxios, axios)
 app.mount('#app');
 ```
 
+### 在vite中引入全局less样式的方法
 
+- 在vite.config.js中添加一下配置
 
+  ```js
+  css: {
+  		preprocessorOptions: {
+  			less: {
+  				javascriptEnabled: true,
+  				additionalData: `@import "${path.resolve(__dirname, 'src/styles/commons.less')}";`,
+  			}
+  		}
+  	}
+  ```
 
+### 引入字体图标
+
+- 使用 [**iconfont**](https://www.iconfont.cn/) 选择自己需要的字体图标引入项目中
+
+### 引入mock模拟数据
+
+```bash
+yarn add mockjs
+```
 
 
 

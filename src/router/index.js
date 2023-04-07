@@ -1,16 +1,23 @@
-import Index from "@/view/index.vue";
-import {createRouter, createWebHistory} from "vue-router";
+import YiKeIndex from "@/view/YiKeIndex.vue";
+import {createRouter, createWebHashHistory} from "vue-router";
+import WallMessage from "@/view/WallMessage.vue";
 
 const routes = [
 	{
-		path:'/',
-		name: 'index',
-		component: Index
+		path: '/',
+		redirect: '/wall',
+		component: YiKeIndex,
+		children: [
+			{
+				path: 'wall',
+				component: WallMessage,
+			}
+		]
 	}
 ]
 
 const router = createRouter({
-	history: createWebHistory(),
+	history: createWebHashHistory(),
 	routes,
 })
 

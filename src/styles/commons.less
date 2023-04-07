@@ -1,0 +1,66 @@
+//公共样式
+//--------- Colors --------
+@primary_color: #3B73F0; //全局主色
+@link_color: #1890ff; //链接色
+@success_color: #22BF87; //成功色
+@warning_color: #F67770; //警告色
+@error_color: #F35248; //错误色
+
+//--------- 中性色 ---------
+@gary_1: #202020;
+@gary_2: #5B5B5B;
+@gary_3: #949494;
+@gery_9: #F6F6F8;
+@gary_10: #FFF;
+
+//--------- font --------
+@font_size_12: 12px;
+@font_size_14: 14px;
+@font_size_16: 16px;
+
+//--------- interval --------
+@interval_4: 4px;
+@interval_8: 8px;
+@interval_12: 12px;
+@interval_20: 20px;
+
+//--------- commons --------
+body {
+  padding: 0;
+  margin: 0;
+  line-height: 1.5;
+  color: @gary_1;
+  font-size: @font_size_14;
+  background-color: @gary_10;
+  transition: all .3s;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+	text-decoration: underline;
+  }
+}
+
+input, textarea {
+  outline: none;
+}
