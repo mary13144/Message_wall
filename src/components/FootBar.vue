@@ -21,7 +21,7 @@
 			<div class="footBar_mid">
 				<p class="mid_title">链接</p>
 				<div class="link">
-					<a href="https://www.huohuo90.com" target="_blank" class="link_name">逸刻时光</a>
+					<a href="http://www.huohuo90.com" target="_blank" class="link_name">逸刻时光</a>
 					<a href="https://space.bilibili.com/485469670" target="_blank" class="link_name">b站</a>
 				</div>
 

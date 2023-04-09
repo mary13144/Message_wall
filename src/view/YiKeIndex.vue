@@ -10,6 +10,9 @@
 <script setup>
 import FootBar from "@/components/FootBar.vue";
 import TopBar from "@/components/TopBar.vue";
+import {provide, ref} from "vue";
+const id = ref(0);
+provide('key',id)
 </script>
 
 <style lang="less" scoped>

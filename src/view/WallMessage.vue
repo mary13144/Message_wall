@@ -7,40 +7,63 @@
 	      <p class="slogan">{{wallType[id].slogan}}</p>
       </div>
       <div class="label">
-          <p class="label_list " :class="{label_select:label_index===-1}" @click="switchIndex(-1)">全部</p>
-          <p class="label_list" :class="{label_select:label_index===index}" v-for="(item,index) in label[id]" @click="switchIndex(index)">{{item}}</p>
+          <p class="label_list " :class="{label_select:label_index===-1}" @click="labelIndexHandler(-1)">全部</p>
+          <p class="label_list" :class="{label_select:label_index===index}" v-for="(item,index) in label[id]" @click="labelIndexHandler(index)">{{item}}</p>
       </div>
-      <div class="main" >
-          <NodeCard class="main_inner" v-for="data in noteData.data" :note="data" @click="isShowHandler"/>
+      <div class="card_main" v-show="id===0">
+          <NodeCard class="main_inner" :key="data.id" :class="{cardSelect:card_index === index}" @click="cardIndexHandler(index)" :note="data" v-for="(data,index) in note.data" />
+      </div>
+      <div class="photo_main" v-show="id===1">
+          <PhotoCard class="photo_item" :key="data.id" :photo-data="data" v-for="data in photo.data"></PhotoCard>
       </div>
       <div class="add" @click="isShowHandler" v-show="!isShow">
           <span class="iconfont icon-tianjia" ></span>
       </div>
-      <YKModel :isShow="isShow" @isShowHandler="isShowHandler">
-          <NewCard></NewCard>
+      <YKModel :isShow="isShow" @isShowHandler="isShowHandler" :title="title">
+          <NewCard :id="id" @closeModel="isShowHandler" v-if="card_index===-1"></NewCard>
+          <CardDetail :cardData="note.data[card_index]" v-else></CardDetail>
       </YKModel>
   </div>
 </template>
 
 <script setup>
 import {label, wallType} from "@/utils/data";
-import {computed, onBeforeUnmount, onMounted, ref} from "vue";
+import {computed, inject, onBeforeUnmount, onMounted, ref} from "vue";
 import NodeCard from "@/components/NoteCard.vue";
-import  noteData from "../../mock"
+import  {note,photo} from "../../mock"
 import YKModel from "@/components/YKModel.vue";
 import NewCard from "@/components/NewCard.vue";
-
-const id = ref(0);
-const label_index = ref(2)
+import CardDetail from "@/components/CardDetail.vue";
+import PhotoCard from "@/components/PhotoCard.vue";
+const id = inject('key');
+const label_index = ref(-1);
+const card_index = ref(-1);
 const addBottom = ref('30px');
 const isShow = ref(false);
+const title = ref('留言');
 const isShowHandler = ()=>{
-	isShow.value = !isShow.value;
+    isShow.value = !isShow.value;
+    card_index.value = -1;
+    title.value = '留言';
 }
 
-
-const switchIndex = (index)=>{
+//label标签的选择
+const labelIndexHandler = (index)=>{
 	label_index.value = index;
+}
+
+//card卡片的选择
+const cardIndexHandler = (index)=>{
+  if (isShow.value&&card_index.value===-1)
+      return
+  if (card_index.value!==index){
+      card_index.value = index;
+      isShow.value = true;
+      title.value = '详情'
+  }else {
+      card_index.value = -1;
+      isShow.value = false;
+  }
 }
 
 
@@ -124,13 +147,28 @@ onBeforeUnmount(()=>{
             border-radius: 14px;
         }
     }
-    .main{
+    .card_main{
         display: flex;
         flex-wrap: wrap;
         width: v-bind(screenWidth);
         margin: 28px auto 40px;
         .main_inner{
+            border: 1px solid transparent;
             margin: 6px;
+        }
+        .cardSelect{
+            border: 1px solid @primary_color;
+        }
+    }
+    .photo_main{
+        width: 88%;
+        margin: 28px auto 40px;
+        columns: 6;
+        column-gap: 4px;
+
+        .photo_item{
+            margin-bottom: @interval_4;
+            break-inside: avoid;
         }
     }
     .add{

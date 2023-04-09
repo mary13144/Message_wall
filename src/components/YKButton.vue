@@ -21,6 +21,7 @@ const props = defineProps({
     text-align: center;
 	  border: none;
     box-sizing: border-box;
+    cursor: pointer;
 }
 //size
 .max{

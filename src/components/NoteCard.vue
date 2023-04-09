@@ -2,7 +2,7 @@
   <div class="node_card">
       <div class="top_bar">
           <p class="time">{{props.note.moment}}</p>
-          <p class="label">{{label[0][props.note.labelIndex]}}</p>
+          <p class="label">{{label[id][props.note.labelIndex]}}</p>
       </div>
       <div class="main">
           <p>{{props.note.message}}</p>
@@ -29,8 +29,8 @@
 
 <script setup>
 import {label,color} from "@/utils/data";
-import {computed} from "vue";
-
+import {computed, inject} from "vue";
+const id = inject('key')
 const props = defineProps({
     width:{
 		    type:String,

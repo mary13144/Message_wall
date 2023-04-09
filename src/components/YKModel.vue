@@ -2,7 +2,7 @@
     <Transition name="fade">
         <div class="model" v-if="props.isShow">
             <div class="model_head">
-                <p class="model_name">写留言</p>
+                <p class="model_name">{{props.title}}</p>
                 <span class="iconfont icon-guanbi" @click.self="()=>{emits('isShowHandler')}"></span>
             </div>
             <div class="model_main">
@@ -17,6 +17,9 @@
 const props = defineProps({
     isShow:{
 		  type:Boolean
+    },
+    title:{
+        type:String
     }
 })
 
@@ -65,6 +68,7 @@ const emits = defineEmits(['isShowHandler'])
     box-shadow: 0 0 20px 0 rgba(0,0,0,0.08);
     backdrop-filter: blur(10px);
     position: fixed;
+    z-index: 9999;
 	  right: 0;
     top: 52px;
     .model_head{
@@ -78,9 +82,8 @@ const emits = defineEmits(['isShowHandler'])
 	        font-weight: bold;
         }
         .icon-guanbi{
-            font-size: 13px;
+            font-size: @font_size_16;
             color: @gary_2;
-            padding: 2px 5px;
             &:hover{
                 cursor: pointer;
             }
@@ -90,7 +93,7 @@ const emits = defineEmits(['isShowHandler'])
 
     .model_main{
         box-sizing: border-box;
-        padding: 0 20px;
+        padding: 0 20px 116px 20px;
         height: 100%;
         overflow-y: auto;
         //修改默认滚动条

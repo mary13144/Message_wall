@@ -5,8 +5,8 @@
 			<p class="logo_name">一刻时光</p>
 		</div>
 		<div class="menu">
-			<YKButton size="base" level="cPrimary" >留言墙</YKButton>
-			<YKButton size="base" level="cSecondary" class="ykButton">照片墙</YKButton>
+			<YKButton size="base" :level="levelStyle0" @click="changeWall(0)">留言墙</YKButton>
+			<YKButton size="base" :level="levelStyle1" class="ykButton" @click="changeWall(1)">照片墙</YKButton>
 		</div>
 		<div class="user">
 			<div class="user-head">
@@ -18,10 +18,20 @@
 
 <script setup>
 import YKButton from "@/components/YKButton.vue";
-import {ref} from "vue";
-
+import {computed, inject, ref} from "vue";
+const id = inject('key');
+const levelStyle0 = computed(()=>{
+	return id.value===0?'cPrimary':'cSecondary';
+})
+const levelStyle1 = computed(()=>{
+	return id.value===1?'cPrimary':'cSecondary';
+})
 const size = ref('base');
 const level = ref('primary');
+
+const changeWall = (index)=>{
+	id.value = index;
+}
 </script>
 
 <style lang="less" scoped>
