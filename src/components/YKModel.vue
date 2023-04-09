@@ -68,7 +68,7 @@ const emits = defineEmits(['isShowHandler'])
     box-shadow: 0 0 20px 0 rgba(0,0,0,0.08);
     backdrop-filter: blur(10px);
     position: fixed;
-    z-index: 9999;
+    z-index: 99999;
 	  right: 0;
     top: 52px;
     .model_head{

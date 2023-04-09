@@ -4,7 +4,7 @@
           <p class="contact">联系墙主撕掉该便签</p>
           <p class="report">举报</p>
       </div>
-      <NoteCard :note="props.cardData" width="100%" class="detail_main"></NoteCard>
+      <NoteCard :note="props.data" width="100%" class="detail_main"></NoteCard>
       <div class="comment">
           <textarea class="message" placeholder="请输入内容..."></textarea>
           <div class="comment_submit">
@@ -13,7 +13,7 @@
           </div>
       </div>
       <div class="comment_detail">
-          <p class="comment_title">评论:{{props.cardData.commentNumber}}</p>
+          <p class="comment_title">评论:{{props.data.commentNumber}}</p>
           <div class="comment_li" v-for="data in comment.data">
               <div class="user_head" :style="{backgroundImage:portrait[data.imgUrl]}"></div>
               <div class="comment_main">
@@ -31,9 +31,12 @@
 <script setup>
 import NoteCard from "@/components/NoteCard.vue";
 import YKButton from "@/components/YKButton.vue";
-const props = defineProps(['cardData'])
 import {comment} from "../../mock";
 import {portrait} from "@/utils/data";
+
+
+const props = defineProps(['data'])
+
 </script>
 
 <style lang="less" scoped>
